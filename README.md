@@ -33,7 +33,7 @@ async function readDir(directory: Directory, prefix?: string) {
   const result: Record<string, File> = {};
   for (const file of files) {
     if (file instanceof Directory) {
-      Object.assign(result, readDir(file, prefix ? `${prefix}/${file.name}` : file.name));
+      Object.assign(result, await readDir(file, prefix ? `${prefix}/${file.name}` : file.name));
     } else {
       result[prefix ? `${prefix}/${file.name}` : file.name] = file;
     }
