@@ -14,7 +14,7 @@ async function readDir(uri: string, prefix?: string) {
     if (fileInfo.isDirectory) {
       Object.assign(result, await readDir(fileUri, prefix ? `${prefix}/${file}` : file))
     } else {
-      result[prefix ? `${prefix}/${file}` : file] = FileSystem.read;
+      result[prefix ? `${prefix}/${file}` : file] = fileUri;
     }
   }
   return result;
