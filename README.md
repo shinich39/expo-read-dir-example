@@ -30,12 +30,12 @@ import { File, Directory, Paths } from 'expo-file-system/next';
 
 async function readDir(directory: Directory, prefix?: string) {
   const files = directory.list();
-  const result: Record<string, Uint8Array> = {};
+  const result: Record<string, File> = {};
   for (const file of files) {
     if (file instanceof Directory) {
       Object.assign(result, readDir(file, prefix ? `${prefix}/${file.name}` : file.name));
     } else {
-      result[prefix ? `${prefix}/${file.name}` : file.name] = file.bytes();
+      result[prefix ? `${prefix}/${file.name}` : file.name] = file;
     }
   }
   return result;
